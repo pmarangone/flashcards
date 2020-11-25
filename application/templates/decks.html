@@ -1,0 +1,18 @@
+{% extends "template.html" %} {% block title %} Decks {% endblock %} {% block style %} span { color: #e6e6e6; } {% endblock %} {% block header %} Decks {% endblock %} {% block content %}
+
+<div class="login-box">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification">
+        {{ messages[0] }}
+    </div>
+    {% endif %} {% endwith %} {% for d in decks %}
+    <ul id='d.name'>
+        <li>
+            <a href="{{ url_for('study', deck_ref = d.name) }}">{{ d.name }}</a>
+        </li>
+    </ul>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

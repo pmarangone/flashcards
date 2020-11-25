@@ -1,0 +1,33 @@
+{% extends "template.html" %} {% block title %} Cards {% endblock %} {% block style %} .container { margin:auto; width: 30%; height: 150px; padding: 12px 20px; box-sizing: border-box; border: 2px solid #ccc; border-radius: 4px; background-color: #f8f8f8;
+resize: none; } {% endblock %} {% block heading %} Create your deck {% endblock %} {% block content %}
+
+<div class='login-box'>
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification">
+        {{ messages[0] }}
+    </div>
+    {% endif %} {% endwith %} {% if form %}
+    <form action="{{url_for('createDeck')}}" method="POST" style="padding:5px;">
+
+        <div class='user-box'>
+            <!-- Name Field -->
+            {{ form.name.label(class="login-box user-box label") }}: <br> {{ form.name(class="login-box user-box input") }}
+            <br> {% if form.name.errors %} {% for error in form.name.errors %}
+            <b class="invalid" {{ error }} </b>
+            <br> {% endfor %} {% endif %}
+        </div>
+
+        <div class='user-box'>
+            <!-- Summary Field -->
+            {{ form.summary.label(class="login-box user-box label") }}: <br> {{ form.summary(class="login-box user-box input") }}
+            <br> {% if form.summary.errors %} {% for error in form.summary.errors %}
+            <b class="invalid" {{ error }} </b>
+            <br> {% endfor %} {% endif %}
+        </div>
+
+
+        {{ form.csrf_token }} {{ form.submit(class="form-submit-button") }}
+    </form>
+</div>
+
+{% endif %} {% endblock %}

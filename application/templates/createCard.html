@@ -1,0 +1,46 @@
+{% extends "template.html" %} {% block title %} Cards {% endblock %} {% block heading %} Create your card {% endblock %} {% block content %}
+
+<div class='login-box'>
+    {% if form %}
+
+
+    <!-- This is responsible for messages of errors -->
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <div class="notification">
+        {{ messages[0] }}
+    </div>
+    {% endif %} {% endwith %}
+
+
+    <form action="{{url_for('createCard')}}" method="POST" style="padding:5px;">
+
+        <dir class='user-box'>
+            <!-- Deck name Field -->
+            {{ form.deck_name.label(class="login-box user-box label") }}: <br> {{ form.deck_name(class="login-box user-box input") }}
+            <br> {% if form.deck_name.errors %} {% for error in form.deck_name.errors %}
+            <b class="invalid"> {{ error }} </b>
+            <br> {% endfor %} {% endif %}
+        </dir>
+
+        <!-- Front Field -->
+        <dir class='user-box'>
+            {{ form.front.label(class="login-box user-box label") }}: <br> {{ form.front(class="login-box user-box input") }}
+            <br> {% if form.front.errors %} {% for error in form.front.errors %}
+            <b class="invalid"> {{ error }} </b>
+            <br> {% endfor %} {% endif %}
+        </dir>
+
+        <!-- Back Field -->
+        <dir class='user-box'>
+            {{ form.back.label(class="login-box user-box label") }}: <br> {{ form.back(class="login-box user-box input") }}
+            <br> {% if form.back.errors %} {% for error in form.back.errors %}
+            <b class="invalid"> {{ error }} </b>
+            <br> {% endfor %} {% endif %}
+        </dir>
+
+        <div>
+            {{ form.csrf_token }} {{ form.submit(class="form-submit-button") }}
+        </div>
+    </form>
+</div>
+{% endif %} {% endblock %}

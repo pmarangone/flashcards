@@ -1,0 +1,87 @@
+{% extends "template.html" %} {% block title %} Notes {% endblock %} {% block style %} div a { color: #e6e6e6; text-align: center; width: 100%; } .qa { text-align: center; width: 100%; height: 100%; } table { margin: 0 auto; } #wrapper { display: flex;
+align-items: center; justify-content: center; } #back { color: #e6e6e6; width: 100%; height: 99%; text-align: center; margin-top: 20px; display: none; } span{ height: 100%; border-top: 2px solid #e6e6e6; } {% endblock %} {% block header %} Notes {% endblock
+%} {% block content %}
+
+<!-- Front -->
+<div class="login-box" style="width: 50%; height: 80%">
+    <div class="qa">
+        <a class='navigate'>{{ cards[index].front }}</a> <br>
+        <span id="back"> 
+          
+          <a> {{ cards[index].back}} </a>
+             </span>
+    </div>
+
+    <table>
+        <tr>
+            <td class='back'></td>
+            <td class='forward'><button id='go_forward' class='navigate form-submit-button'>Forward</button></td>
+
+            <td><button onclick="myFunction()" class="form-submit-button" id="wrapper"> Show answer </button></td>
+
+        </tr>
+    </table>
+
+
+
+</div>
+
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("back");
+
+        if (x.style.display === "none" || x.style.display === "") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+
+        }
+    }
+
+
+    // TODO: DIVE CREDITS TO THE GUY
+    $(document).ready(function() {
+        $('.login-box').on('click', '.navigate', function() {
+            var direction = 'b';
+            if ($(this).prop('id') === 'go_forward') {
+                direction = 'f';
+            }
+
+            $.ajax({
+                url: "/get_next",
+                type: "get",
+                data: {
+                    direction: direction
+                },
+                success: function(response) {
+
+                    var x = document.getElementById("back");
+                    x.style.display = "none";
+
+                    $('.navigate').text(response.card_front);
+                    console.log(response.card_front);
+
+                    $('#back').text(response.card_back);
+                    console.log(response.card_back);
+
+                    if (response.back === "True") {
+                        $('.back').html("<button id='go_back' class='navigate form-submit-button'>Back</button>")
+                    } else {
+                        $('#go_back').remove();
+                    }
+                    if (response.forward === "True") {
+                        $('.forward').html("<button id='go_forward' class='navigate form-submit-button'>Forward</button>")
+                    } else {
+                        $('#go_forward').remove();
+                    }
+
+                },
+
+            });
+        });
+    });
+</script>
+
+{% endblock %}

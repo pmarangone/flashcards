@@ -1,0 +1,126 @@
+/* extended from: https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda?__cf_chl_jschl_tk__=65a7f4ec013c858d8bace6f2fa04259d5df6dcaf-1605655648-0-ATMjuSzwn0SqEqNxEuIeCTNGW2VZfzTjHyyU5tpLfjaw62JkX3JSxAJXlyRFULJkG5vJ_J_CmMGHbMN6uUn-xkdwBjKFPmCe3k_sEkkCh-UMyPo8qGkHHSpGl0mU0p6SeXg_CqetA0xuN_al_VVLZEF4twC8E48euz3ShhbdoHkoP4K7SQfVzZekG2Xb3wQwMLVDWguafFjnZL5sSRdaitK9iFnPw8ZL73hVENzAzx0UMn2d0r6SSoiXW-oCGPRv8-H1L-29VHXg31GO8JQnGIREJkiNqjEHmkY8nChvewh14IvYuzFMl5Vk3rMxn7-Cq5jpg76vaVGIFepnoXyp1QS_nHbEIVcuUXmo1cMQf5j2Ez4YDIUB-CBCQYVXcEVN3nMdjQK33k5obeh-LCFNBPGhvoJgl8_EsluVjSEIQmzA */
+
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    /*background: linear-gradient(#141e30, #243b55);*/
+    background: #15202B;
+}
+
+ul li a {
+    color: #e6e6e6;
+}
+
+.invalid {
+    padding: 4px;
+    background-color: rgb(131, 8, 8);
+}
+
+.notification {
+    padding: 4px;
+    background-color: #e6e6e6;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+    padding: 20px;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box .user-box label {
+    /*position: absolute;*/
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+}
+
+.login-box form a {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.form-submit-button {
+    background: #0066A2;
+    color: #e6e6e6;
+    border-style: outset;
+    border-color: #0066A2;
+    height: 50px;
+    width: 100px;
+    font: bold 15px arial, sans-serif;
+    text-shadow: none;
+}
+
+.form-submit-button:hover,
+.form-submit-button:focus {
+    background: #0053ba;
+}
+
+.form-submit-button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+.form-submit-button:active {
+    transform: scale(0.99);
+}
